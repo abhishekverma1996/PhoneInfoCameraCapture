@@ -1,7 +1,6 @@
 # PhoneInfoCameraCapture
-[![Run on Repl.it](https://blog.replit.com/images/logo.png)](https://repl.it/github.com/abhishekverma1996/PhoneInfoCameraCapture)
 
-for demo must check https://t.me/phonecamerainfobot
+for demo must check https://t.me/telegramtracker
 
 ### How to build
 1. Create a telegram bot through [BotFather](https://t.me/BotFather).
